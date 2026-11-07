@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>¡Feliz cumpleaños!</title>
+  <style>
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      min-height: 100vh;
+      display: grid;
+      place-items: center;
+      padding: 24px;
+      color: #fff8e8;
+      font-family: system-ui, Arial, sans-serif;
+      text-align: center;
+      background: radial-gradient(circle at top, #4b315f, #171322 65%);
+    }
+    main { width: min(100%, 560px); }
+    h1 { font-size: clamp(2rem, 7vw, 3.2rem); margin: 0 0 12px; }
+    p { color: #eadff0; line-height: 1.5; }
+    button {
+      margin-top: 18px;
+      padding: 14px 26px;
+      border: 0;
+      border-radius: 999px;
+      background: linear-gradient(135deg, #f8d36a, #d99c25);
+      color: #25172b;
+      font-size: 1.05rem;
+      font-weight: 700;
+      cursor: pointer;
+      box-shadow: 0 8px 24px #0005;
+    }
+    button:hover { transform: translateY(-2px); }
+    #sorpresa { display: none; }
+    #sorpresa img {
+      display: block;
+      width: 100%;
+      max-height: 72vh;
+      object-fit: contain;
+      margin: 22px auto 0;
+      border: 4px solid #f5d77c;
+      border-radius: 18px;
+      box-shadow: 0 14px 40px #0008;
+    }
+    .mensaje { font-size: 1.15rem; }
+    .nota { font-size: .85rem; opacity: .75; margin-top: 24px; }
+  </style>
+</head>
+<body>
+  <main>
+    <section id="inicio">
+      <h1>🎁 Una sorpresa para ti</h1>
+      <p>Hay algo preparado. Pulsa el botón para descubrirlo.</p>
+      <button id="abrir">Abrir sorpresa ✨</button>
+    </section>
+
+    <section id="sorpresa">
+      <h1>¡Feliz cumpleaños! 🎂</h1>
+      <p class="mensaje">Me encanta programar XD.</p>
+      <img src="foto-cumple.png" alt="Fotografía de cumpleaños">
+    </section>
+
+    <audio id="musica" src="Las mañanitas saturado.mp4" loop preload="auto"></audio>
+  </main>
+
+  <script>
+    const boton = document.getElementById("abrir");
+    const inicio = document.getElementById("inicio");
+    const sorpresa = document.getElementById("sorpresa");
+    const musica = document.getElementById("musica");
+
+    boton.addEventListener("click", async () => {
+      inicio.style.display = "none";
+      sorpresa.style.display = "block";
+
+      try {
+        await musica.play();
+      } catch (error) {
+        alert("No se pudo iniciar el audio. Comprueba que musica.mp3 esté junto a index.html.");
+      }
+    });
+  </script>
+</body>
+</html>
